@@ -5,7 +5,7 @@ using System.Collections;
 using UnityEngine.Events;
 using System;
 
-public class PlayerController : MonoBehaviour, IPickUp {
+public class PlayerController : MonoBehaviour, IPickUp{
 	
 	public delegate void TrapPlayer();
 	public TrapPlayer PlayerBadBonus;
@@ -45,6 +45,10 @@ public class PlayerController : MonoBehaviour, IPickUp {
 		if (other.gameObject.CompareTag("Pick Up"))
 			PickUp(true, 1f, gameObject);
 
+		//if (other.gameObject is IBuff buff)
+			//PickUp(true, 1f, gameObject);
+			//buff.Buff();
+
 		if (other.gameObject.CompareTag("GoodBonus"))
 			PickUp(true, _speedGoodBonus, gameObject);
 
@@ -71,7 +75,7 @@ public class PlayerController : MonoBehaviour, IPickUp {
 			Log("Victory!");
 		}
 	}
-	public void PickUp(bool isUp, float speedBonus, GameObject gameObject)//(bool isUp, float speedBonus, GameObject gameObject)
+	public void PickUp(bool isUp, float speedBonus, GameObject gameObject)
 	{
 		
 		if (isUp) _count++;
