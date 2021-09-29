@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GoodBuff : MonoBehaviour, IBuff
+public class GoodBuff : CanvasView, IBuff
 {
     private void OnTriggerEnter(Collider other)
     {
+        Count++;
+        SetCountText();
         Debug.Log("Player is buffed!");
 
     }
