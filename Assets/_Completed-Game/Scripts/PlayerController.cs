@@ -1,77 +1,62 @@
 ﻿using UnityEngine;
-
 using UnityEngine.UI;
-
 using static UnityEngine.Debug;
-
 using System.Collections;
+using UnityEngine.Events;
+using System;
 
-public class PlayerController : MonoBehaviour {
+//public class PlayerController : IPickUp{
 	
-	public float speed;
-	private readonly float  speedGoodBonus = 1.33f;
-	private readonly float  speedBadBonus = 0.66f;
-	public Text countText;
-	public Text winText;
+//	public delegate void TrapPlayer();
+//	public TrapPlayer PlayerBadBonus;
+//	public float Speed = 10f;
+//	private readonly float  _speedGoodBonus = 1.33f;
+//	private readonly float  _speedBadBonus = 0.66f;
 
-	private Rigidbody rb;
-	private int count;
+//	private void Start ()
+//	{
+//		PlayerBadBonus += Trap;
+//	}
+	
 
-	private void Start ()
-	{
-		rb = GetComponent<Rigidbody>();
+//	private void OnTriggerEnter(Collider other)
+//	{
+//		GameObject gameObject = other.gameObject;
+//		if (other.gameObject.CompareTag("Pick Up"))
+//			PickUp(true, 1f, gameObject);
 
-		count = 0;
+//		//if (other.gameObject is IBuff buff)
+//			//PickUp(true, 1f, gameObject);
+//			//buff.Buff();
 
-		SetCountText ();
+//		if (other.gameObject.CompareTag("GoodBonus"))
+//			PickUp(true, _speedGoodBonus, gameObject);
 
-		winText.text = "";
-	}
+//		try
+//		{
+//			if (other.gameObject.CompareTag("BadBonus")) //GetComponent<Player>
+//			{
+//				PickUp(false, _speedBadBonus, gameObject);
+//				PlayerBadBonus();
+//			}
+//		}
+//		catch
+//		{
+//			Log("Ошибка при подборе дебафа");
+//		}
+//	}
 
-	private void FixedUpdate ()
-	{
-		float moveHorizontal = Input.GetAxis ("Horizontal");
-		float moveVertical = Input.GetAxis ("Vertical");
+//	public void PickUp(bool isUp, float speedBonus, GameObject gameObject)
+//	{
+		
+//		if (isUp) _count++;
+//		else _count--;
+//		gameObject.SetActive(false);
+//		Speed *= speedBonus;
+//	}
 
-		Vector3 movement = new Vector3 (moveHorizontal, 0.0f, moveVertical);
-
-		rb.AddForce (movement * speed);
-	}
-
-	private void OnTriggerEnter(Collider other) 
-	{
-		if (other.gameObject.CompareTag ("Pick Up"))
-		{
-			countIncrease(true, 1f, other);
-		}
-
-		if (other.gameObject.CompareTag("GoodBonus"))
-		{
-			countIncrease(true, speedGoodBonus, other);
-		}
-		if (other.gameObject.CompareTag("BadBonus"))
-		{
-			countIncrease(false, speedBadBonus, other);
-		}
-	}
-
-	private void SetCountText()
-	{
-		countText.text = "Count: " + count.ToString ();
-
-		if (count >= 12) 
-		{
-			winText.text = "You Win!";
-			Log("Victory!");
-		}
-	}
-	private void countIncrease(bool isUp, float speedBonus, Collider other)
-	{
-		if (isUp) count++;
-		else count--;
-
-		SetCountText();
-		other.gameObject.SetActive(false);
-		speed *= speedBonus;
-	}
-}
+//	private void Trap() 
+//	{
+//		Log("Trap!");
+//	}
+//}
