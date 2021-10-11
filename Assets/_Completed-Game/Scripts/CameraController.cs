@@ -1,22 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public sealed class CameraController : IExecute
-{
-    private Transform _player;
-    private Transform _mainCamera;
-    private Vector3 _offset;
+public class CameraController : MonoBehaviour {
 
-    public CameraController(Transform player, Transform mainCamera)
-    {
-        _player = player;
-        _mainCamera = mainCamera;
-        _mainCamera.LookAt(_player);
-        _offset = _mainCamera.position - _player.position;
-    }
+	public GameObject Player;
+	private Vector3 _offset;
 
-    public void Execute()
-    {
-        _mainCamera.position = _player.position + _offset;
-    }
+	void Start ()
+	{
+		_offset = transform.position - Player.transform.position;
+	}
+
+	void LateUpdate ()
+	{
+		transform.position = Player.transform.position + _offset;
+	}
 }
